@@ -1,0 +1,32 @@
+<h1>lista de clientes cadastrados !</h1>
+<table class="table table-striped table-bordered table-hover">
+    <tbody>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th class="text-center">
+                <a [routerLink]="['/clientes/novo']"
+                 href="#" title="Novo" alt="Novo"
+                   class="btn btn-xs btn-success">
+                   <!--errei aqui:  i class == -->
+                 <i class="fa fa-plus" aria-hidden="true"></i> Novo
+                 </a>
+            </th>
+        </tr>
+        <tr *ngFor="let cliente of clientes">
+            <td>{{ cliente.nome }}</td>
+            <td>{{ cliente.email }}</td>
+            <td class="text-center" style="width: 300px">
+              <a href="#" title="Editar" alt="Editar" class="btn btn-xs btn-info"
+                [routerLink]="['/clientes/editar', cliente.id]">
+                <i class="fa fa-edit" aria-hidden="true"></i> Editar
+              </a>
+              <a href="#" title="Remover" alt="Remocer" class="btn btn-xs btn-danger"
+                  (click)="remover($event, cliente)">
+                <i class="fa fa-times" aria-hidden="true"></i> Remover
+              </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<p *ngIf="clientes.length==0">Nenhuma cliente cadastrado.</p>
